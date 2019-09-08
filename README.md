@@ -1,6 +1,6 @@
 # 100 days of code Challenge
-## This projects contains all of the progress of my 100 days of code challenge.
-### Started on September 8, Sunday, 2019].
+## This projects contains the progress of my 100 days of code challenge.
+### Started on September 8, Sunday, 2019.
 
 ---
 ### Rond One : Visualisation of a sorting algorithm.
