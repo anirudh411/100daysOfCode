@@ -6,15 +6,10 @@ function setup() {
     canvas.parent('canvas');
 }
 
-function draw() {
-
-}
-
 function windowResized() {
     setup();
     buttonCLickHandler();
 }
-
 
 function buttonCLickHandler(event) {
     const arrayElement = document.getElementById('arrayInput');
