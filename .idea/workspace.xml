@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="22aa3e0a-4583-4248-980e-a7cd6e2ee0f3" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SortingVisualisation/SquareBox.js" beforeDir="false" afterPath="$PROJECT_DIR$/SortingVisualisation/SquareBox.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SortingVisualisation/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/SortingVisualisation/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SortingVisualisation/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/SortingVisualisation/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -73,7 +70,7 @@
       <workItem from="1568006303859" duration="3016000" />
       <workItem from="1568012397367" duration="6291000" />
       <workItem from="1568029850999" duration="1551000" />
-      <workItem from="1568032234835" duration="2923000" />
+      <workItem from="1568032234835" duration="3710000" />
     </task>
     <servers />
   </component>
