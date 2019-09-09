@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="22aa3e0a-4583-4248-980e-a7cd6e2ee0f3" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SortingVisualisation/SquareBox.js" beforeDir="false" afterPath="$PROJECT_DIR$/SortingVisualisation/SquareBox.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SortingVisualisation/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/SortingVisualisation/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SortingVisualisation/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/SortingVisualisation/index.js" afterDir="false" />
@@ -73,7 +71,9 @@
       <workItem from="1567922015722" duration="6164000" />
       <workItem from="1567947817730" duration="2773000" />
       <workItem from="1568006303859" duration="3016000" />
-      <workItem from="1568012397367" duration="6100000" />
+      <workItem from="1568012397367" duration="6291000" />
+      <workItem from="1568029850999" duration="1551000" />
+      <workItem from="1568032234835" duration="2923000" />
     </task>
     <servers />
   </component>

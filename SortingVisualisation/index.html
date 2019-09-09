@@ -9,28 +9,25 @@
 <body>
 <div class="container justify-space-between" style="height: 100vh">
     <div class="row my-4 justify-content-center">
-        <div class="form-inline">
-            <div class="form-group">
-                <label for="arrayInput"></label><input type="text" class="form-control" id="arrayInput"
-                                                       value="40,30"
-                                                       aria-describedby="emailHelp"
-                                                       placeholder='10,20,40,50'>
-            </div>
-            <button class="  btn btn-primary" onclick="buttonCLickHandler(event)">Go</button>
+        <h1>Bubble Sort Visualisation</h1>
+    </div>
+    <div class="row my-4 justify-content-center">
+        <div class="form-group col-sm-12">
+            <label for="arrayInput"></label><input type="text" class="form-control" id="arrayInput"
+                                                   value="500,400,300,200,100"
+                                                   aria-describedby="emailHelp"
+                                                   placeholder='10,20,40,50'>
         </div>
+        <button class=" mr-4 btn btn-primary" onclick="buttonCLickHandler(event)">Make Array</button>
+        <button class="  btn btn-primary" onclick="sortButtonClickHandler(event)">Sort</button>
+
+
     </div>
     <div class="row">
         <div id="canvas" class="col-sm-12">
         </div>
     </div>
     <div class="row">
-        <button class="  btn btn-primary" onclick="sortButtonClickHandler(event)">Sort</button>
-    </div>
-    <div class="row ">
-
-        <div id="canvas_result" class="col-sm-12">
-
-        </div>
     </div>
 </div>
 

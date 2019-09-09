@@ -12,7 +12,6 @@ class Square {
         let boxColor = color(100 - colorH, 100, 50);
         colorMode(HSB, 100);
         fill(boxColor);
-        noStroke();
         square(this.squareX, this.squareY, this.size, this.cornerRadius);
     }
 
