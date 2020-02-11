@@ -10,9 +10,23 @@ function numberOfSteps(num = 0) {
 }
 
 
-function removeVowels(str ='') {
-	if (str.length<1) return "";
-	if (["a","e","i","o","u"].includes(str[0].toLowerCase())) return  removeVowels(str.substr(1));
-	else return  str[0]+removeVowels(str.substr(1));
+function removeVowels(str = '') {
+	if (str.length < 1) return "";
+	if (["a", "e", "i", "o", "u"].includes(str[0].toLowerCase())) return removeVowels(str.substr(1));
+	else return str[0] + removeVowels(str.substr(1));
 }
-console.log(removeVowels("anirudh"));
+
+/**
+ * Defanging an IP Address
+ * Given a valid (IPv4) IP address, return a defanged version of that IP address.
+ * A defanged IP address replaces every period "." with "[.]".
+ * @param {string} address
+ * @returns {string}
+ */
+function defangIPaddr(address = '') {
+	if (!address.length) return "";
+	if (address[0] === '.') return `[${address[0]}]${defangIPaddr(address.substr(1))}`;
+	else return `${address[0]}${defangIPaddr(address.substr(1))}`;
+}
+
+
