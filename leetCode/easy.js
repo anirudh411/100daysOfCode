@@ -29,4 +29,13 @@ function defangIPaddr(address = '') {
 	else return `${address[0]}${defangIPaddr(address.substr(1))}`;
 }
 
-
+function decompressRLElist(nums) {
+	let newArr = [];
+	for (let i = 0; i <= nums.length - 2; i += 2) {
+		let freq = nums[i];
+		let val = nums[i + 1];
+		let arr=Array.from({length: freq}, (v, i) => val);
+		newArr=[...newArr,...arr];
+	}
+	return newArr
+}
