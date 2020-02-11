@@ -10,3 +10,8 @@ Day 1 : Setup the project. Included p5.js. Added the functionality of displaying
 Day 2 : Added sorting functionality. Using bubble sort for sorting. Refactored the code in `draw()` function.Made animation working.     
 
 Day 3 and Day 4 . Visited hooks in react.js. Started working on a timer visualisation . 
+
+
+### Round Two : 
+
+Day 1 : Solving LeetCode easy Problem ( Number of Steps to Reduce a Number to Zero);
