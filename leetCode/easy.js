@@ -34,8 +34,51 @@ function decompressRLElist(nums) {
 	for (let i = 0; i <= nums.length - 2; i += 2) {
 		let freq = nums[i];
 		let val = nums[i + 1];
-		let arr=Array.from({length: freq}, (v, i) => val);
-		newArr=[...newArr,...arr];
+		let arr = Array.from({length: freq}, (v, i) => val);
+		newArr = [...newArr, ...arr];
 	}
 	return newArr
 }
+
+function subtractProductAndSum(n) {
+
+	function product(number) {
+		if (number < 2) return 1;
+		else return (number % 10) * product(Math.floor(number / 10));
+	}
+
+	function sum(number) {
+		if (number < 2) return number;
+		else return (number % 10) + sum(Math.floor(number / 10));
+	}
+
+	return product(n) - sum(n);
+}
+
+function findNumbers(nums) {
+	let count = 0;
+	nums.forEach(num => {
+		if (num.toString().length % 2 === 0) count++
+	});
+	return count;
+}
+
+function numJewelsInStones(J, S) {
+	return [...S].reduce((a, c) => {
+		if (J.includes(c)) ++a;
+		return a;
+	}, 0);
+}
+
+function twoSum(numbers = [], target) {
+	let i = 0;
+	let j = numbers.length - 1;
+	while (j > i) {
+		if (numbers[i] + numbers[j] === target) return [i, j];
+		else if (numbers[i] + numbers[j] >= target) j--;
+		else i++;
+	}
+}
+
+
+
