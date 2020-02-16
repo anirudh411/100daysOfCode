@@ -89,5 +89,13 @@ function arrarrayPairSum(nums = []) {
 	return sum
 }
 
+function repeatedNTimes(A=[]) {
+	let occurances = new Set();
+	for (let i = 0; i < A.length; i++) {
+		if (occurances.has(A[i])) return A[i];
+		else occurances.add(A[i]);
+	}
+}
+
 
 
