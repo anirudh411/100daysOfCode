@@ -102,8 +102,8 @@ function intersection(nums1 = [], nums2 = []) {
 	let set2 = new Set(nums2);
 	let output = [];
 	if (set1.size > set2.size) {
-		let i=0;
-		while (i<=set1.size){
+		let i = 0;
+		while (i <= set1.size) {
 
 		}
 	}
