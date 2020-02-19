@@ -5,14 +5,10 @@ class Node {
 	}
 }
 
-let c = new Node(3);
-c.next = new Node(4);
-c.next.next = new Node(5);
-let listb = new Node(9);
-listb.next = new Node(1);
-listb.next.next = new Node(2);
-
-list.next.next = c;
+let c = new Node(9);
+c.next = new Node(10);
+let listb = new Node(7);
+listb.next = new Node(8);
 
 function middleNode(head) {
 	let slow = head;
@@ -36,6 +32,18 @@ function getIntersectionNode(headA, headB) {
 	}
 }
 
-console.log(getIntersectionNode(list, listb));
+function mergeTwoLists(l1, l2) {
+	if (l1 == null) return l2;
+	if (l2 == null) return l1;
+	if (l1.val <= l2.val) {
+		l1.next = mergeTwoLists(l1.next, l2);
+		return l1;
+	}
+	else {
+		l2.next = mergeTwoLists(l1, l2.next);
+		return l2;
+	}
+}
+
 
 
