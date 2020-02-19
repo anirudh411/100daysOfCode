@@ -110,4 +110,42 @@ function intersection(nums1 = [], nums2 = []) {
 }
 
 
+function backspaceCompare(S = '', T = '') {
 
+	let s_index = S.length - 1;
+	let t_index = T.length - 1;
+	let stack = [];
+
+	while (s_index >= 0 && t_index >= 0) {
+		if (S[s_index] != T[t_index]) return false;
+		if (S[s_index] === "#") {
+			s_index -= 2;
+		}
+
+
+		s_index--;
+		t_index--;
+	}
+
+}
+
+function isValid(s = '') {
+	let stack = [];
+	let map = new Map();
+	map.set("(", ")");
+	map.set("[", "]");
+	map.set("{", "}");
+	let i = 0;
+	while (i < s.length) {
+		if (map.has(s[i])) {
+			stack.unshift(s[i]);
+		} else if (map.get(stack[0]) !== s[i]) {
+			return false;
+		} else stack.shift();
+		i++;
+	}
+	return stack.length == 0;
+
+}
+
+console.log(isValid("()[]{}"));

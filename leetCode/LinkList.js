@@ -4,11 +4,12 @@ class Node {
 		this.next = null;
 	}
 }
-
-let c = new Node(9);
-c.next = new Node(10);
 let listb = new Node(7);
+let c = new Node(9);
 listb.next = new Node(8);
+listb.next.next = c;
+c.next = listb;
+
 
 function middleNode(head) {
 	let slow = head;
@@ -44,6 +45,22 @@ function mergeTwoLists(l1, l2) {
 		return l2;
 	}
 }
+
+function hasCycle(head) {
+	let slow = head;
+	let fast = head;
+	while (fast) {
+		if (fast == slow) return true
+		fast = fast.next.next;
+		slow = slow.next;
+		if (fast == null) {
+			return false;
+		}
+	};
+	return false;
+}
+
+console.log(hasCycle(listb));
 
 
 
