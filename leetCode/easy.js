@@ -160,4 +160,26 @@ function isOneBitCharacter(bits = []) {
 	return isOneBitCharacter;
 }
 
-console.log(isOneBitCharacter([1,1,1,0]));
+function addDigits(num) {
+
+	function add(num) {
+		if (num < 10) {
+			return num;
+		} else return num % 10 + add(Math.floor(num / 10));
+	}
+
+	let result = add(num);
+	if (result < 10) return result;
+
+}
+
+function validMountainArray(A = []) {
+	let i = -0;
+	while (i < A.length - 1 && A[i] < A[i + 1]) i++;
+	if (i === 0 || i === A.length - 1) return false;
+	while (i < A.length - 1 && A[i] > A[i + 1])
+		i++;
+	return i == A.length - 1;
+}
+
+console.log(validMountainArray([1, 2]));
