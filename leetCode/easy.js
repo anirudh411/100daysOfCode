@@ -182,4 +182,17 @@ function validMountainArray(A = []) {
 	return i == A.length - 1;
 }
 
-console.log(validMountainArray([1, 2]));
+function transpose(A = []) {
+	let R = A.length;
+	let C = A[0].length;
+	let B = [];
+	for (let i = 0; i < C; i++) {
+		B[i] = [];
+		for (let j = 0; j < R; j++) {
+			B[i][j] = A[j][i]
+		}
+	}
+	return B
+}
+
+
