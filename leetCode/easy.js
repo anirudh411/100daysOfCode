@@ -145,7 +145,19 @@ function isValid(s = '') {
 		i++;
 	}
 	return stack.length == 0;
-
 }
 
-console.log(isValid("()[]{}"));
+
+function isOneBitCharacter(bits = []) {
+	let isOneBitCharacter = false;
+	for (let i = 0; i < bits.length; i++) {
+		if (bits[i] == 1 && (bits[i + 1] == 0 || bits[i + 1] == 1)) {
+			isOneBitCharacter = false;
+			i++;
+			continue;
+		} else isOneBitCharacter = true
+	}
+	return isOneBitCharacter;
+}
+
+console.log(isOneBitCharacter([1,1,1,0]));
