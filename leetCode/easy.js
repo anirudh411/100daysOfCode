@@ -209,10 +209,17 @@ function isToeplitzMatrix(matrix = []) {
 	return true;
 }
 
-console.log(isToeplitzMatrix([
-	[1, 2, 3, 4],
-	[5, 1, 2, 3],
-	[9, 5, 1, 2]
-]));
+function isSymmetric(root) {
+	function isMirror(t1, t2) {
+		if (t1 == null && t2 == null) return true;
+		if (t1 == null || t2 == null) return false;
+		return (t1.val === t2.val)
+			&& isMirror(t1.left, t2.left)
+			&& isMirror(t1.right, t2.right);
+
+	}
+
+	return isMirror(root, root);
+}
 
 
