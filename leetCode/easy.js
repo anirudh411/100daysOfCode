@@ -34,7 +34,7 @@ function decompressRLElist(nums) {
 	for (let i = 0; i <= nums.length - 2; i += 2) {
 		let freq = nums[i];
 		let val = nums[i + 1];
-		let arr = Array.from({length: freq}, (v, i) => val);
+		let arr = Array.from({ length: freq }, (v, i) => val);
 		newArr = [...newArr, ...arr];
 	}
 	return newArr
@@ -222,4 +222,31 @@ function isSymmetric(root) {
 	return isMirror(root, root);
 }
 
+function thirdMax(nums = []) {
+
+	let first_max = -Infinity;
+	let second_max = -Infinity;
+	let third_max = -Infinity;
+	for (const num of nums) {
+		if (num > first_max) {
+			third_max = second_max;
+			second_max = first_max;
+			first_max = num;
+		} else if (num > second_max) {
+			if (num < first_max) {
+				third_max = second_max;
+				second_max = num;
+			}
+		} else if (num > third_max) {
+			if (num < second_max) {
+				third_max = num;
+			}
+		}
+	}
+	//console.log(first_max, second_max, third_max)
+	if (third_max == -Infinity) return first_max;
+	else return third_max;
+}
+console.log(thirdMax([1,2]));
+//console.log(thirdMax([ 2, -2147483648]));
 
