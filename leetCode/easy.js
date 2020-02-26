@@ -247,6 +247,36 @@ function thirdMax(nums = []) {
 	if (third_max == -Infinity) return first_max;
 	else return third_max;
 }
-console.log(thirdMax([1,2]));
-//console.log(thirdMax([ 2, -2147483648]));
+
+function maxSubArray(nums = []) {
+	let actual_sum = 0, b;
+	for (const item of nums) {
+		b = item + b;
+		if (b > actual_sum) {
+			actual_sum = b;
+		}
+	}
+	return actual_sum;
+}
+/**
+ * 
+ * @param {number[]} prices 
+ * @returns {number} maximum profit
+ */
+
+function maxProfit(prices) {
+
+	let maxProfit = 0;
+	let minValue = Infinity;
+
+	for (const price of prices) {
+		if (price < minValue) {
+			minValue = price;
+		} else if (price - minValue > maxProfit) {
+			maxProfit = price - minValue;
+		}
+
+	}
+	return maxProfit;
+}
 

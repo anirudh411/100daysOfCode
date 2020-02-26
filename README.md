@@ -52,4 +52,7 @@ Day 10 : Solved
 Day 11 Solved
 - Third Maximum Number
 
+Day 12 Soved
+- 121 Best Time to Buy and Sell Stock
+ Worked on my website
 

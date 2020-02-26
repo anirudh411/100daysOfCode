@@ -60,6 +60,7 @@ function hasCycle(head) {
 	return false;
 }
 
+
 console.log(hasCycle(listb));
 
 
