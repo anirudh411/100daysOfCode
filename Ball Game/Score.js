@@ -13,7 +13,7 @@ class Score {
 		this.value++;
 	}
 
-	decrement(n) {
-		this.value = this.value - n;
+	updateValue(n) {
+		this.value = this.value + n;
 	}
 }

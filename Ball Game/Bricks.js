@@ -1,10 +1,11 @@
 class Line {
-	constructor(x = 0, y = 0, height = 10, width = 200, type = 'enemy') {
+	constructor(type, x = 0, y = 0, height = 10, width = random(10, 100), ) {
+		console.log(type);
 		this.x = x;
 		this.y = y;
 		this.height = height;
 		this.width = width;
-		this.direction = 1;
+		this.speed = 2;
 		this.type = type;
 	}
 
@@ -21,7 +22,10 @@ class Line {
 	}
 
 	update() {
-		this.y += this.direction;
+		//if (this.speed < 10) {
+			this.y += this.speed;
+		//}
+
 	}
 
 

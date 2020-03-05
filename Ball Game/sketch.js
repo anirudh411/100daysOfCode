@@ -5,15 +5,28 @@ let image1y = 0;
 let image2y = 0;
 let spaceShip;
 let backgroundImage;
+const brickTypeChoices = [
+	'enemy',
+	'enemy',
+	'enemy',
+	'enemy',
+	'enemy',
+	'enemy',
+	'friend',
+	'friend',
+	'friend',
+	'family',
+	'family',
+	'family'
+];
+const brickWidthChoices = [50, 75, 100, 175, 125, 150, 200, 225, 250]
 
 function preload() {
 	backgroundImage = loadImage('https://cdn.spacetelescope.org/archives/images/newsfeature/heic1909a.jpg');
-
 	spaceShip = loadImage('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhrXr8qkDvX5k5WrpdalvC2iiQiuh8kC3Plt0roB4y7SWjU44YYQ&s');
-
 	image2y = windowHeight;
-
 }
+
 
 
 function setup() {
@@ -21,42 +34,35 @@ function setup() {
 	textAlign(CENTER, CENTER);
 	ball = new Ball(100, height - 20, 10);
 	for (let i = 0; i < 10; i++) {
-		let x = random(100, width - 100);
-		lines[i] = new Line(x, x, 20, x);
+		lines[i] = createBrick();
 	}
 	image(backgroundImage, 0, 0, windowWidth, windowHeight);
 
 }
 
+function createBrick() {
+	const brickWidth = random(brickWidthChoices);
+	const x = random(-windowWidth/2, windowWidth);
+	const y = random(0, windowHeight / 2);
+	return new Line(random(brickTypeChoices), x, y, 20, brickWidth);
+}
+
 function draw() {
 	drawBackground();
 	ball.draw();
-	manageBallMovement();
-	if (lines.length < 3) {
-		lines.push(new Line())
-	}
-
+	manageBallDirection();
 	lines.forEach((line, i) => {
 		line.draw();
 		if (line.y > height) {
-			line.direction = line.direction + .2;
-			let x = random(i * 100, (i * 10) + 50);
-			line.x = x;
+			if (line.speed < 4.5)
+				line.speed += .2;
+			line.x = random(0, windowWidth);
 			line.y = 0;
-			line.width = x;
-			score.update();
+			line.width = random(brickWidthChoices);;
 		}
 		line.update();
 	});
-
-	let idx = isBallIntersectingBricks(ball, lines);
-	if (idx >= 0) {
-		score.decrement(5);
-		//lines.push(new Line());
-		lines[idx].y = 0;
-	}
-
-	score.show();
+	updateScore(ball, lines);
 }
 
 function drawBackground() {
@@ -70,58 +76,42 @@ function drawBackground() {
 	}
 }
 
+function updateScore(ball, lines) {
+	let idx = isBallIntersectingBricks(ball, lines);
+	if (idx >= 0) {
+		switch (lines[idx].type) {
+			case 'enemy':
+				score.updateValue(-5);
+				break;
+			case 'friend':
+				score.updateValue(2);
+				break;
+			case 'family':
+				score.updateValue(5);
+				break;
+		}
+		lines[idx] = createBrick();
+	}
+	score.show();
+
+
+}
+
 function isBallIntersectingBricks(ball, lines) {
 	for (let i = 0; i < lines.length; i++) {
-		let x1 = ball.x + ball.diameter / 2
-		let y1 = ball.y - ball.diameter / 2;
-		let x2 = lines[i].x + lines[i].width;
-		let y2 = lines[i].y + lines[i].height;
-		let x3 = lines[i].x;
-		let y3 = lines[i].y;
-		//console.log (x1>x3&&x1<x2,y1>y2&&y1<y3);
-
-		if ((x1 > x3 && x1 < x2) && (y2 > y1 && y1 < y3)) return i
-
-
-		//  if (((y1 - y2) < ball.diameter / 2) && abs((x1 - x2)) < ball.diameter/2) return i;
-
-		//     let distance = abs(dist(ball.x, ball.y, x2, y2));
-		//     //if (distance < lines[i].width / 2) return i;
-		//     return -1
-
-
-		//     let line = lines[i];
-		//     let d = ((ball.y - line.y) < 1) && ball.x - line.x < line.width;
-		//     if (d) {
-		//       return i
-		//     }
+		const ballTop = ball.x + ball.diameter / 2
+		const ballLeft = ball.y - ball.diameter;
+		const lineBottomX = lines[i].x + lines[i].width;
+		const lineBottomY = lines[i].y + lines[i].height;
+		const lineTopX = lines[i].x;
+		const lineTopY = lines[i].y;
+		if ((ballTop > lineTopX && ballTop < lineBottomX) && (lineBottomY > ballLeft && ballLeft < lineTopY)) return i;
 	}
-
 	return -1;
-
-
-	// return lines.some(line => {
-	//   return ball.y < line.y + line.height && ball.x >= line.x && ball.x <= line.x + line.width
-	//   return false
-	// });
-
 }
 
-function keyPressed() {
-	switch (keyCode) {
-		case LEFT_ARROW:
-			//  ball.x = ball.x - 20;
+function manageBallDirection() {
 
-			break;
-		case RIGHT_ARROW:
-			//ball.x = ball.x + 20;
-
-			break;
-	}
-}
-
-function manageBallMovement() {
-  
 	if (keyIsDown(LEFT_ARROW)) {
 		if (ball.x > ball.diameter / 2)
 			ball.move(-5);
@@ -131,5 +121,4 @@ function manageBallMovement() {
 			ball.move(+5);
 
 	}
-
 }
