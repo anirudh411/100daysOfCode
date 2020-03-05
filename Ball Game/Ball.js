@@ -2,7 +2,7 @@ class Ball {
 	constructor(x, y, r) {
 		this.x = x;
 		this.y = y;
-		this.diameter = 2 * r || 10;
+		this.diameter = r || 20;
 		this.xDirection = 11;
 		this.yDirection = 13;
 	}

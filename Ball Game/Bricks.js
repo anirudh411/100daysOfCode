@@ -1,6 +1,8 @@
+
 class Line {
-	constructor(type, x = 0, y = 0, height = 10, width = random(10, 100), ) {
-		console.log(type);
+	static MAX_SPEED = 4.5;
+	static ACCELERATION = -.2;
+	constructor(type, x = 0, y = 0, height = 10, width = random(10, 100)) {
 		this.x = x;
 		this.y = y;
 		this.height = height;
@@ -8,25 +10,50 @@ class Line {
 		this.speed = 2;
 		this.type = type;
 	}
-
 	draw() {
 		let r;
 		let b;
 		let g;
 		r = g = b = 0;
-		if (this.type === 'enemy') r = 255;
-		if (this.type === 'friend') g = 255;
-		if (this.type === 'family') b = 255;
-		fill(r, g, b);
-		rect(this.x, this.y, this.width, this.height);
+		noStroke();
+		switch (this.type) {
+			case 'enemy':
+				r = 244;
+				g = 0;
+				b = 0;
+				fill(r, g, b);
+				for (let x = this.x; x < this.x + this.width; x = x + 5) {
+					triangle(x, this.y + this.height, x + 2.5, this.y + this.height + 5, x + 5, this.y + this.height);
+					triangle(x, this.y, x + 2.5, this.y - 5, x + 5, this.y);
+
+				}
+				for (let y = this.y; y < this.y + this.height; y = y + 5) {
+					triangle(this.x + this.width, y, this.x + this.width + 5, y + 2.5, this.x + this.width, y + 5);
+					triangle(this.x, y, this.x - 5, y + 2.5, this.x + 5, y + 5);
+				}
+				rect(this.x, this.y, this.width, this.height);
+
+				break;
+			case 'family':
+				r = 25;
+				g = 118;
+				b = 210;
+				fill(r, g, b);
+				this.width=70;
+				this.height=50
+				image(appleImage, this.x, this.y, this.width, this.height);
+				//rect(this.x, this.y, this.width, this.height);
+				break;
+			default:
+				r = 0;
+				g = 0;
+				g = 255;
+				fill(r, g, b);
+				rect(this.x, this.y, this.width, this.height);
+		}
 	}
 
 	update() {
-		//if (this.speed < 10) {
-			this.y += this.speed;
-		//}
-
+		this.y += this.speed;
 	}
-
-
 }
