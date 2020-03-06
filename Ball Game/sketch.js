@@ -6,27 +6,29 @@ let image2y = 0;
 let appleImage;
 let spaceShip;
 let backgroundImage;
+let bananaImage;
 let timeElapsed;
 const brickTypeChoices = [
 	'enemy',
-	'enemy',
-	'enemy',
-	'enemy',
-	'enemy',
-	'enemy',
-	'friend',
-	'friend',
-	'friend',
-	'friend',
 	'family',
+	'enemy',
+	'friend',
+	'enemy',
+	'friend',
+	'enemy',
+	'friend',
+	'enemy',
+	'family',
+	'enemy',
 	'family',
 ];
-const brickWidthChoices = [50, 75, 100, 175, 125, 150, 200, 225, 250]
+const brickWidthChoices = [50, 75, 100, 175, 125, 150, 200]
 
 function preload() {
 	backgroundImage = loadImage('https://cdn.spacetelescope.org/archives/images/newsfeature/heic1909a.jpg');
 	spaceShip = loadImage('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhrXr8qkDvX5k5WrpdalvC2iiQiuh8kC3Plt0roB4y7SWjU44YYQ&s');
 	appleImage = loadImage("./assets/apple.png")
+	bananaImage = loadImage("./assets/banana.png");
 	image2y = windowHeight;
 }
 
@@ -36,7 +38,7 @@ function setup() {
 	createCanvas(windowWidth, windowHeight);
 	textAlign(CENTER, CENTER);
 	ball = new Ball(100, height - 20, 20);
-	for (let i = 0; i < 10; i++) {
+	for (let i = 0; i < 15; i++) {
 		lines[i] = createBrick();
 	}
 }
@@ -44,7 +46,7 @@ function setup() {
 function createBrick() {
 	const brickWidth = random(brickWidthChoices);
 	const x = random(-windowWidth / 2, windowWidth);
-	const y = random(-100, 200);
+	const y = random(-windowHeight / 2, 100);
 	return new Line(random(brickTypeChoices), x, y, 20, brickWidth);
 }
 
@@ -59,7 +61,7 @@ function draw() {
 			if (line.speed < Line.MAX_SPEED)
 				line.speed += Line.ACCELERATION;
 			line.x = random(0, windowWidth);
-			line.y = 0;
+			line.y = random(-windowHeight / 2, 100);
 			line.width = random(brickWidthChoices);;
 		}
 		line.update();
@@ -81,6 +83,7 @@ function drawBackground() {
 function updateScore() {
 	let idx = isBallIntersectingBricks(ball, lines);
 	if (idx >= 0) {
+		lines[idx].y = random(-windowHeight / 2, 100);
 		switch (lines[idx].type) {
 			case 'enemy':
 				score.updateValue(-5);
@@ -90,9 +93,13 @@ function updateScore() {
 				break;
 			case 'family':
 				score.updateValue(5);
+				lines.pop();
 				break;
 		}
-		lines[idx] = createBrick();
+		if(lines.length<15){
+			lines.push(createBrick());
+		}
+		//lines[idx].type = random(brickTypeChoices);
 	}
 	score.show();
 

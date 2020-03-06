@@ -19,6 +19,7 @@ class Ball {
 		let b = ball.y % 255;
 		push()
 		noStroke()
+
 		fill(255, 0, 0);
 		pop()
 		//noFill()
