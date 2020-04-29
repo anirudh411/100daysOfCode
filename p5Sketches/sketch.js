@@ -64,7 +64,7 @@ class Mover {
     display() {
 
         push();
-        translate(this.positon.x, this.positon.y);
+        translate(this.position.x, this.position.y);
         rotate(this.velocity.heading());
         fill(255);
         triangle(-20, 20, 0, -20, 20, 20);
@@ -77,7 +77,7 @@ class Mover {
     update() {
 
         this.velocity.add(this.acc);
-        this.positon.add(this.velocity);
+        this.position.add(this.velocity);
         this.aAcc = this.acc.x / 10;
         if (this.aVelocity < this.maxVelocity) {
             this.aVelocity += this.aAcc;
@@ -95,8 +95,8 @@ class Mover {
     }
 
     checkEdges() {
-        if (this.positon.y > height) {
-            this.positon.y = height;
+        if (this.position.y > height) {
+            this.position.y = height;
             this.velocity = this.velocity.mult(-1);
         }
         // if (this.positon.y < 0) {
