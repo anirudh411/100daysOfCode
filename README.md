@@ -56,3 +56,5 @@ Day 12 Soved
 - 121 Best Time to Buy and Sell Stock
  Worked on my website
 
+Day 13
+- Made pendulum simulation
