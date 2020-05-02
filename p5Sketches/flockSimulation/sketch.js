@@ -2,10 +2,13 @@ class Boid {
     constructor() {
         this.position = createVector(random(width), random(height));
         this.velocity = p5.Vector.random2D();
-        this.velocity.setMag(random(2, 5));
+        this.velocity.setMag(random(2, 4));
         this.acceleration = createVector();
         this.r = 10;
+        this.maxForce = 0.3;
+        this.maxSpeed = 1;
     }
+
 
     update() {
         this.position.add(this.velocity);
@@ -13,9 +16,24 @@ class Boid {
         this.acceleration.mult(0);
     }
 
+    edges() {
+        if (this.position.x > width) {
+            this.position.x = 0
+        } else if (this.position.x < 0) {
+            this.position.x = width;
+        }
+
+
+        if (this.position.y > height) {
+            this.position.y = 0
+        } else if (this.position.y < 0) {
+            this.position.y = height;
+        }
+    }
+
     align(boids = []) {
         let steering = createVector();
-        const perception = 500;
+        const perception = 100;
         let totalInPerception = 0;
         for (const otherBoid of boids) {
             const distance = dist(this.position.x, this.position.y, otherBoid.position.x, otherBoid.position.y);
@@ -26,10 +44,12 @@ class Boid {
         }
         if (totalInPerception > 0) {
             steering.div(totalInPerception);
+            steering.setMag(this.maxSpeed)
             steering.sub(this.velocity);
+            steering.limit(this.maxForce);
         }
 
-        return steering
+        return steering;
     }
 
     flock(boids) {
@@ -37,17 +57,18 @@ class Boid {
     }
 
     show() {
-        strokeWeight(16);
-        stroke(255);
+
+        push();
+        translate(this.position.x, this.position.y);
+        let angle = this.velocity.heading();
+        rotate(angle + PI / 2);
         triangle(
-            this.position.x - this.r, this.position.y + this.r,
-            this.position.x, this.position.y - this.r,
-            this.position.x + this.r, this.position + this.r
-        )
-        // vertex(this.position.x, this.position.y - this.r * 2);
-        // vertex(this.position.x - this.r, this.position + this.r * 2);
-        // vertex(this.position.x + this.r, this.position + this.r * 2);
-        //point(this.position.x, this.position.y);
+            - this.r / 3, this.r,
+            0, - this.r,
+            + this.r / 3, this.r
+        );
+        pop();
+
     }
 }
 
@@ -64,8 +85,11 @@ function setup() {
 function draw() {
     background(0);
     flock.forEach(boid => {
-        //  boid.flock(flock);
+
+        boid.edges();
+        boid.flock(flock);
         boid.show()
-        //boid.update();
+        boid.update();
     });
+
 }
