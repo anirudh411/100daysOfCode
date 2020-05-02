@@ -4,6 +4,7 @@ class Boid {
         this.velocity = p5.Vector.random2D();
         this.velocity.setMag(random(2, 5));
         this.acceleration = createVector();
+        this.r = 10;
     }
 
     update() {
@@ -38,7 +39,15 @@ class Boid {
     show() {
         strokeWeight(16);
         stroke(255);
-        point(this.position.x, this.position.y);
+        triangle(
+            this.position.x - this.r, this.position.y + this.r,
+            this.position.x, this.position.y - this.r,
+            this.position.x + this.r, this.position + this.r
+        )
+        // vertex(this.position.x, this.position.y - this.r * 2);
+        // vertex(this.position.x - this.r, this.position + this.r * 2);
+        // vertex(this.position.x + this.r, this.position + this.r * 2);
+        //point(this.position.x, this.position.y);
     }
 }
 
@@ -55,8 +64,8 @@ function setup() {
 function draw() {
     background(0);
     flock.forEach(boid => {
-        boid.flock(flock);
+        //  boid.flock(flock);
         boid.show()
-        boid.update();
+        //boid.update();
     });
 }
