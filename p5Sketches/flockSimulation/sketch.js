@@ -1,10 +1,10 @@
 class Boid {
-    constructor() {
+    constructor(r = 10) {
         this.position = createVector(random(width), random(height));
         this.velocity = p5.Vector.random2D();
         this.velocity.setMag(random(2, 4));
         this.acceleration = createVector();
-        this.r = 10;
+        this.r = r;
         this.maxForce = 0.1;
         this.maxSpeed = 3;
         this.angle = 0;
@@ -114,18 +114,26 @@ class Boid {
 
         push();
         // rotate(-PI/2)
-        fill(255, 211, 0);
-        noStroke();
+        fill('green');
+
+
         triangle(
             0, this.r / 2,
             -this.r * 1.5, this.r,
             0, this.r)
+
         triangle(
             0, this.r / 2,
             this.r * 1.5, this.r,
             0, this.r)
 
         pop();
+
+
+
+        push();
+
+        fill('darkblue');
 
         triangle(
             - this.r / 3, this.r,
@@ -144,12 +152,7 @@ class Boid {
         vertex(-10, 0);
         vertex(0, 4);
 
-
-
-        // vertex(- this.r / 3, this.r);
-        // vertex(0, - this.r);
-        // vertex(+ this.r / 3, this.r);
-
+        pop();
 
 
 
@@ -170,20 +173,22 @@ const flock = []
 function setup() {
     createCanvas(window.innerWidth, window.innerHeight);
     for (let i = 0; i < 100; i++) {
-        flock.push(new Boid());
+        flock.push(new Boid(random(1,5)));
     }
 }
 
 
 function draw() {
-    background(0);
+    background('white');
     flock.forEach(boid => {
-
+        noStroke();
         boid.edges();
         boid.flock(flock);
         boid.show()
         boid.update();
+
     });
-    //noLoop();
+
+    // noLoop();
 
 }
