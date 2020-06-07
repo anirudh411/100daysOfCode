@@ -58,3 +58,9 @@ Day 12 Soved
 
 Day 13
 - Made pendulum simulation
+
+
+### Round Three :
+ Day 1:
+ - Started working on my website ( [My website](http://ani-im.website)).
+ - Learning framer motion
